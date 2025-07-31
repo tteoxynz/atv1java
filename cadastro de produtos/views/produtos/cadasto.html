@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <title>Cadastrar Produto</title>
+  <link rel="stylesheet" href="../../public/style.css">
+</head>
+<body>
+  <h1>Cadastrar Produto</h1>
+  <form id="form-produto">
+    <label for="nome">Nome do Produto:</label>
+    <input type="text" id="nome" name="nome" required>
+    <label for="quantidade">Quantidade:</label>
+    <input type="number" id="quantidade" name="quantidade" required>
+    <label for="preco">Preço (R$):</label>
+    <input type="number" id="preco" name="preco" step="0.01" required>
+    <button type="submit">Cadastrar</button>
+    <button type="button" id="editar" style="display:none;">Editar</button>
+    <button type="button" id="excluir" style="display:none;">Excluir</button>
+    <div id="mensagem"></div>
+  </form>
+  <a href="index.html" class="link-basico">Lista de Produtos</a>
+  <script>
+    const form = document.getElementById('form-produto');
+    const mensagem = document.getElementById('mensagem');
+    const editarBtn = document.getElementById('editar');
+    const excluirBtn = document.getElementById('excluir');
+
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const dados = new FormData(form);
+      fetch('../../controllers/ProdutoController.php', {
+        method: 'POST',
+        body: dados
+      })
+      .then(res => res.json())
+      .then(resposta => {
+        if (resposta.sucesso) {
+          mensagem.innerHTML = `<span style="color:green">${resposta.mensagem}</span>`;
+          form.reset();
+          editarBtn.style.display = 'none'; // Esconde o botão de editar após cadastrar
+          excluirBtn.style.display = 'none'; // Esconde o botão de excluir após cadastrar
+        } else {
+          mensagem.innerHTML = `<span style="color:red">${resposta.erro}</span>`;
+        }
+      })
+      .catch(() => {
+        mensagem.innerHTML = `<span style="color:red">Erro ao enviar dados.</span>`;
+      });
+    });
+
+    // Função para habilitar o botão de editar
+    function habilitarEdicao(produto) {
+      document.getElementById('nome').value = produto.nome;
+      document.getElementById('quantidade').value = produto.quantidade;
+      document.getElementById('preco').value = produto.preco;
+      editarBtn.style.display = 'inline'; // Mostra o botão de editar
+      excluirBtn.style.display = 'inline'; // Mostra o botão de excluir
+    }
+
+    // Exemplo de como usar a função habilitarEdicao
+    // habilitarEdicao({ nome: 'Produto Exemplo', quantidade: 10, preco: 20.00 });
+
+    editarBtn.addEventListener('click', () => {
+      // Lógica para editar o produto
+      const dados = new FormData(form);
+      fetch('../../controllers/ProdutoController.php', {
+        method: 'PUT', // Método para editar
+        body: dados
+      })
+      .then(res => res.json())
+      .then(resposta => {
+        if (resposta.sucesso) {
+          mensagem.innerHTML = `<span style="color:green">${resposta.mensagem}</span>`;
+          form.reset();
+          editarBtn.style.display = 'none';
+          excluirBtn.style.display = 'none';
+        } else {
+          mensagem.innerHTML = `<span style="color:red">${resposta.erro}</span>`;
+        }
+      })
+      .catch(() => {
+        mensagem.innerHTML = `<span style="color:red">Erro ao editar dados.</span>`;
+      });
+    });
+
+    excluirBtn.addEventListener('click', () => {
+      // Lógica para excluir o produto
+      const dados = new FormData(form);
+      fetch('../../controllers/ProdutoController.php', {
+        method: 'DELETE', // Método para excluir
+        body: dados
+      })
+      .then(res => res.json())
+      .then(resposta => {
+        if (resposta.sucesso) {
+          mensagem.innerHTML = `<span style="color:green">${resposta.mensagem}</span>`;
+          form.reset();
+          editarBtn.style.display = 'none';
+          excluirBtn.style.display = 'none';
+        } else {
+          mensagem.innerHTML = `<span style="color:red">${resposta.erro}</span>`;
+        }
+      })
+      .catch(() => {
+        mensagem.innerHTML = `<span style="color:red">Erro ao excluir dados.</span>`;
+      });
+    });
+  </script>
+</body>
+</html>

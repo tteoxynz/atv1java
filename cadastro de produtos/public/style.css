@@ -1,0 +1,62 @@
+body {
+    font-family: Arial, sans-serif;
+    padding: 20px;
+}
+
+form {
+    max-width: 400px;
+    margin: auto;
+}
+
+label {
+    display: block;
+    margin-top: 10px;
+}
+
+input {
+    width: 100%;
+    padding: 8px;
+    margin-top: 5px;
+}
+
+button {
+    margin-top: 15px;
+    padding: 10px 15px;
+    background: #3c433f;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
+#mensagem {
+    margin-top: 15px;
+}
+
+table {
+    border-collapse: collapse;
+    width: 100%;
+}
+
+th,td {
+    border: 1px solid #ccc;
+    padding: 10px;
+    text-align: left;
+}
+
+th {
+    background-color: #f2c94c;
+}
+.link-basico {
+    display: inline-block;
+    padding: 8px 16px;
+    background-color: #07304c;
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+}
+
+.link-basico:hover {
+    background-color: #2980b9;
+    /* azul mais escuro ao passar o mouse */
+}

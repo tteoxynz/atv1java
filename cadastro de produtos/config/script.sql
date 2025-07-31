@@ -1,0 +1,15 @@
+CREATE DATABASE IF NOT EXISTS projetoMVC;
+USE projetoMVC;
+
+CREATE TABLE produtos(
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    nome VARCHAR(100) NOT NULL,
+    preco DECIMAL(10, 2) NOT NULL,
+    quantidade INT NOT NULL
+);
+CREATE TABLE usuarios(
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    nome VARCHAR(100) NOT NULL,
+    matricula VARCHAR(100) NOT NULL,
+    funcao VARCHAR(100) NOT NULL
+);
