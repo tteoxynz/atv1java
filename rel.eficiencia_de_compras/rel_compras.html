@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Relatório de Compras</title>
+  <link rel="stylesheet" href="rel_compras.css">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+  <div class="container">
+    <h1>Relatório de Compras e Negociações</h1>
+
+    <!-- Filtros e ordenação -->
+    <div class="filtros">
+      <div class="input-group">
+        <i class="fa fa-search"></i>
+        <input type="text" id="search" placeholder="Buscar produto...">
+      </div>
+      <div class="input-group">
+        <i class="fa fa-sort"></i>
+        <select id="ordenacao">
+          <option value="">Ordenar...</option>
+          <option value="produto">Produto A-Z</option>
+          <option value="fornecedor">Fornecedor A-Z</option>
+          <option value="Alta">Status Alta</option>
+          <option value="Média">Status Média</option>
+          <option value="Baixa">Status Baixa</option>
+        </select>
+      </div>
+    </div>
+
+    <!-- Cards -->
+    <div class="cards">
+      <div class="card">
+        <h2>Total de Compras</h2>
+        <p id="totalCompras">R$ 0</p>
+      </div>
+      <div class="card">
+        <h2>Pedidos Abertos</h2>
+        <p id="pedidosAbertos">0</p>
+      </div>
+      <div class="card">
+        <h2>Fornecedores Ativos</h2>
+        <p id="fornecedoresAtivos">0</p>
+      </div>
+    </div>
+
+    <!-- Gráficos lado a lado -->
+    <div class="graficos">
+      <div class="grafico-card">
+        <canvas id="graficoPizza"></canvas>
+      </div>
+      <div class="grafico-card">
+        <canvas id="graficoLinha"></canvas>
+      </div>
+    </div>
+
+    <!-- Tabela com linha de cadastro -->
+    <div class="table-container">
+      <table>
+        <thead>
+          <tr>
+            <th>Produto</th>
+            <th>Fornecedor</th>
+            <th>Quantidade</th>
+            <th>Status</th>
+            <th>Ações</th>
+          </tr>
+        </thead>
+        <tbody id="linhaCadastro">
+          <tr>
+            <td><input type="text" id="novoProduto" placeholder="Produto"></td>
+            <td><input type="text" id="novoFornecedor" placeholder="Fornecedor"></td>
+            <td><input type="number" id="novaQuantidade" placeholder="Quantidade"></td>
+            <td>
+              <select id="novoStatus">
+                <option value="">Status</option>
+                <option value="Alta">Alta</option>
+                <option value="Média">Média</option>
+                <option value="Baixa">Baixa</option>
+              </select>
+            </td>
+            <td><button id="btnAddLinha">Adicionar</button></td>
+          </tr>
+        </tbody>
+        <tbody id="tabelaBody">
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- Modal Observação -->
+  <div class="modal" id="modalObservacao">
+    <div class="modal-content">
+      <h3>Observação do Produto</h3>
+      <textarea id="modalText" rows="4"></textarea>
+      <button id="modalSalvar">Salvar</button>
+    </div>
+  </div>
+
+  <!-- Modal Confirmação -->
+  <div class="modal" id="modalExcluir">
+    <div class="modal-content">
+      <h3>Confirmar Exclusão</h3>
+      <p>Deseja realmente excluir este produto?</p>
+      <button id="confirmExcluir">Sim</button>
+      <button id="cancelExcluir">Cancelar</button>
+    </div>
+  </div>
+
+  <script src="https://kit.fontawesome.com/a2e0e6ad2b.js" crossorigin="anonymous"></script>
+  <script src="rel_compras.js"></script>
+</body>
+</html>

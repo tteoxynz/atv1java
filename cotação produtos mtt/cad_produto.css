@@ -1,0 +1,265 @@
+/* Estilos gerais da página */
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background: linear-gradient(135deg, #e0f7fa, #f0f2f5);
+  display: flex;
+  justify-content: center;
+  padding: 30px;
+}
+
+.container {
+  width: 900px;
+  background: #fff;
+  padding: 25px;
+  border-radius: 15px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+  animation: fadeIn 0.5s ease;
+}
+
+/* Título */
+h1 {
+  text-align: center;
+  margin-bottom: 25px;
+  color: #333;
+}
+
+/* Barra superior */
+.barra-superior {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.barra-superior input {
+  width: 65%;
+  padding: 10px 14px;
+  border-radius: 10px;
+  border: 1px solid #ccc;
+  transition: all 0.3s ease;
+  transform: scale(1);
+}
+
+.barra-superior input:focus {
+  outline: none;
+  transform: scale(1.05);
+  box-shadow: 0 0 15px rgba(0, 123, 255, 0.5);
+  transition: all 0.3s ease;
+}
+
+/* Botão de ordenar */
+.ordenar {
+  position: relative;
+}
+
+#btnOrdenar {
+  padding: 10px 14px;
+  font-size: 20px;
+  border-radius: 10px;
+  border: 1px solid #ccc;
+  cursor: pointer;
+  background: #fff;
+  transition: all 0.3s ease;
+}
+
+#btnOrdenar:hover {
+  transform: scale(1.1);
+  box-shadow: 0 0 15px rgba(0, 123, 255, 0.5);
+}
+
+#menuOrdenar {
+  display: none;
+  position: absolute;
+  top: 45px;
+  right: 0;
+  background: #fff;
+  border-radius: 10px;
+  border: 1px solid #ccc;
+  width: 200px;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  z-index: 10;
+}
+
+#menuOrdenar li {
+  padding: 10px 15px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+#menuOrdenar li:hover,
+#menuOrdenar li.active {
+  background: #007BFF;
+  color: #fff;
+}
+
+/* Tabela */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 15px;
+  border-radius: 12px;
+  overflow: hidden;
+  opacity: 0;
+  animation: fadeIn 1s forwards;
+}
+
+th, td {
+  padding: 12px;
+  text-align: center;
+  border-bottom: 1px solid #ddd;
+  transition: all 0.3s ease;
+}
+
+tbody tr {
+  transition: all 0.4s ease;
+  background: #fff;
+}
+
+tbody tr:hover:not(#linha-cadastro) {
+  transform: scale(1.03);
+  box-shadow: 0 6px 20px rgba(0, 123, 255, 0.25);
+}
+
+tbody input {
+  width: 90%;
+  padding: 6px;
+  border-radius: 6px;
+  border: 1px solid #b15454;
+  text-align: center;
+  transition: all 0.3s ease;
+}
+
+tbody input:focus {
+  outline: none;
+  transform: scale(1.05);
+  box-shadow: 0 0 12px rgba(0, 123, 255, 0.5);
+}
+
+/* Botão de excluir */
+.btn-excluir {
+  background: #dc3545;
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  padding: 6px 10px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.btn-excluir:hover {
+  transform: scale(1.1);
+  box-shadow: 0 0 15px rgba(220, 53, 69, 0.6);
+}
+
+/* Modal de confirmação */
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 1000;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  justify-content: center;
+  align-items: center;
+  animation: fadeIn 0.4s ease;
+}
+
+.modal-content {
+  background: #fff;
+  padding: 20px;
+  border-radius: 12px;
+  width: 320px;
+  text-align: center;
+  animation: fadeIn 0.5s ease;
+}
+
+/* Botões do modal */
+.modal-buttons button {
+  padding: 8px 16px;
+  margin: 10px;
+  border-radius: 6px;
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+/* Botões Sim e Não com zoom */
+#confirmSim,
+#confirmNao {
+  background: #4c6a84;
+  color: #fff;
+}
+
+#confirmSim:hover,
+#confirmNao:hover {
+  transform: scale(1.1);
+  box-shadow: 0 0 10px rgba(0, 123, 255, 0.3);
+}
+
+/* Animações */
+@keyframes fadeIn {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeOut {
+  to {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+}
+
+.fade-in {
+  opacity: 0;
+  animation: fadeIn 0.5s forwards;
+}
+
+.fade-out {
+  opacity: 0;
+  transform: translateY(-20px);
+  transition: all 0.4s ease;
+}
+
+/* Zoom */
+.zoom {
+  transform: scale(1.05);
+  transition: all 0.3s ease;
+}
+
+.zoom-in {
+  transform: scale(1.1);
+  transition: all 0.3s ease;
+}
+
+/* Estilos de foco (inputs e linhas) */
+tbody input:focus,
+.barra-superior input:focus {
+  outline: none;
+  transform: scale(1.05);
+  box-shadow: 0 0 12px rgba(0, 123, 255, 0.5);
+}
+
+/* Efeito de zoom nas linhas */
+tbody tr:hover {
+  transform: scale(1.03);
+  box-shadow: 0 6px 20px rgba(0, 123, 255, 0.25);
+}
+
+/* Zoom nos botões do modal */
+.modal-buttons button:hover {
+  transform: scale(1.1);
+  box-shadow: 0 0 12px rgba(0, 123, 255, 0.3);
+}
+
+/* Efeito de zoom na linha de pesquisa */
+.barra-superior input:hover {
+  transform: scale(1.05);
+  transition: all 0.3s ease;
+}
+
