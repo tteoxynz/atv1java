@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Relatório de Compras</title>
+    <link rel="stylesheet" href="rel_compras.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Flatpickr -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+</head>
+<body>
+    <div class="container">
+        <header class="report-header">
+            <i class="fas fa-chart-bar header-icon"></i>
+            <h1>Relatório de Compras</h1>
+        </header>
+
+        <div class="toolbar">
+            <div class="search-box">
+                <input type="text" placeholder="Buscar...">
+                <i class="fas fa-search search-icon"></i>
+            </div>
+            <div class="sort-box">
+                <span>Ordenar por:</span>
+                <select>
+                    <option>Produto (A-Z)</option>
+                    <option>Fornecedor (A-Z)</option>
+                    <option>Valor Crescente</option>
+                    <option>Valor Decrescente</option>
+                    <option>Data (Mais Recente)</option>
+                    <option>Tipo de Compra (Fixa Primeiro)</option>
+                    <option>Tipo de Compra (Variável Primeiro)</option>
+                    <option>Frequência (Mensal Primeiro)</option>
+                    <option>Frequência (Anual Primeiro)</option>
+                </select>
+                <i class="fas fa-chevron-down sort-arrow"></i>
+            </div>
+        </div>
+
+        <div class="data-table">
+            <div class="table-row header-row">
+                <div class="column header-type">Tipo de compra</div>
+                <div class="column header-product">Produto</div>
+                <div class="column header-supplier">Fornecedor</div>
+                <div class="column header-date">Data da compra</div>
+                <div class="column header-value">Valor</div>
+                <div class="column header-frequency">Frequência</div>
+                <div class="column header-obs">Observação</div>
+                <div class="column header-action">Ação</div>
+            </div>
+
+            <!-- Linha fixa de cadastro -->
+            <div class="table-row data-row input-row">
+                <div class="column">
+                    <select class="input-type">
+                        <option>Fixa</option>
+                        <option>Variável</option>
+                    </select>
+                </div>
+                <div class="column">
+                    <input type="text" class="input-product" placeholder="Produto">
+                </div>
+                <div class="column">
+                    <input type="text" class="input-supplier" placeholder="Fornecedor">
+                </div>
+                <div class="column">
+                    <input type="text" class="input-date datepicker" placeholder="Data">
+                </div>
+                <div class="column">
+                    <input type="number" class="input-value" placeholder="Valor">
+                </div>
+                <div class="column">
+                    <select class="input-frequency">
+                        <option>Mensal</option>
+                        <option>Anual</option>
+                    </select>
+                </div>
+                <div class="column">
+                    <input type="text" class="input-obs" placeholder="Observação">
+                </div>
+                <div class="column data-action">
+                    <button class="save-button">Salvar</button>
+                </div>
+            </div>
+
+            <!-- Linhas de dados dinâmicas serão inseridas via JS -->
+        </div>
+
+        <!-- Modal de Exclusão -->
+        <div id="confirmationModal" class="modal">
+            <div class="modal-content">
+                <p>Você tem certeza que deseja excluir este item?</p>
+                <div class="modal-buttons">
+                    <button class="confirm-btn">Confirmar</button>
+                    <button class="cancel-btn">Cancelar</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Modal de Observação -->
+        <div id="obsModal" class="modal">
+            <div class="modal-content">
+                <p>Editar Observação</p>
+                <input type="text" id="obsInput" placeholder="Digite a observação">
+                <div class="modal-buttons">
+                    <button id="obsSaveBtn" class="confirm-btn">Salvar</button>
+                    <button id="obsCancelBtn" class="cancel-btn">Cancelar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="rel_compras.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+    <script>
+        flatpickr(".datepicker", {
+            dateFormat: "Y-m-d",
+            locale: "pt"
+        });
+    </script>
+</body>
+</html>
